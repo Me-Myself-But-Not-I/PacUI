@@ -90,7 +90,7 @@ else:
         print("   B. Reinstall PacUI then try again")
         print("   C. try your command with pacman in the terminal")
         print("   D. Reinstall/update python(in terminal, run sudo pacman -Syu python)")
-        print("   E. Install Debian")
+        print("   E. Install RedHat, but who would want that?")
     elif errorOption != "":
         print("You selected an invalid option. Remember: selections must be capitalised, and packages must be lowercase.")
     else:
