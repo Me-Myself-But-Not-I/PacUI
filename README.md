@@ -1,5 +1,5 @@
 # PacUI
-A TUI for  using debian's APT and arch's pacman package managers.
+A TUI for using Debian's APT and Arch's Pacman, which are package managers.
 
 ## Installation guide
 PacUI, in it's current state, is just a single .py file, or a .tar.gz. 
@@ -16,7 +16,7 @@ To install from the tar.gz follow these instructions:
 3. Open the script.
 
 ## Features
-In it's current, work in progress, state, PacUI is just a guided CLI for pacman. It does not have every command in pacman accessible, nor is planned to.
+In its current, work in progress, state, PacUI is just a guided CLI for pacman. It does not have every command in pacman accessible, nor is planned to.
 Currently, PacUI is able to:
 - Install packages, through pacman
 - Query packages, through pacman
@@ -31,4 +31,4 @@ PacUI requires that python is installed. PacUI was made with python 3.14, it is 
 PacUI is a simple script, it gives a prompt, you press a letter then enter, then it will run a command for you. 
 
 ## Planned updates
-The main thing to be added is a proper GUI using tkinter.
+The main thing to be added is a proper GUI using TKinter, as it is python native and doesn't require other dependencies.
