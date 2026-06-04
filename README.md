@@ -27,6 +27,9 @@ Currently, PacUI is able to:
 ## Required Dependencies
 PacUI requires that python is installed. PacUI was made with python 3.14, it is recommeded to use the latest version of python at the time of use.
 
+## Notes
+The .py files (PacUI.py and APTUI.py) are terminal based, additional files will be added for a button based UI.
+
 ## How it works
 PacUI is a simple script, it gives a prompt, you press a letter then enter, then it will run a command for you. 
 
