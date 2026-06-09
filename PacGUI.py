@@ -2,59 +2,105 @@
 import tkinter as tk
 import subprocess
 
+
 Background = "#17a9d6"
+Text_Color = "white"
+Button_Color = "#0d7a9e"
 
 root = tk.Tk()
-pkg = ""
+pkg = tk.StringVar()
 
 root.title("PacGUI")
-root.configure(background = Background)
-root.minsize(350, 200)
+root.configure(background=Background)
+root.minsize(400, 350)
 
-label1 = tk.Label(root, text="PacGUI, your graphical interface to use pacman")
-label1.pack()
-
-label2 = tk.Label(root, text="Type a package name below, in lowercase(not mandatory for package list)")
-label2.pack()
-
-pkg = tk.StringVar()
-text_box = tk.Entry(root, textvariable=pkg, )
-text_box.pack()
-
-if pkg != "":
-    sel = pkg.get()
-else:
-    sel = "none selected"
-
-selected = tk.Label(root, text=sel)
-selected.pack()
-
-Install = tk.Button(root, height=1, width=15, text = "Install", command="install()")
-Install.pack()
-
-Uninstall = tk.Button(root, height=1, width=15, text = "Uninstall", command="uninstall()")
-Uninstall.pack()
-
-Query = tk.Button(root, height=1, width=15, text = "List all packages", command="query()")
-Query.pack()
-
-QuerySpecific = tk.Button(root, height=1, width=15, text = "get info on specified package", command="querySpecific()")
-QuerySpecific.pack()
-
-def changeText():
-    selected(text=pkg)
 def install():
-    if pkg != "":
-        subprocess.run(args="sudo pacman -S " + pkg.get())
-def uninstall():
-    if pkg != "":
-        subprocess.run(args="sudo pacman -Rs " + pkg.get())
-def query():
-    subprocess.run(args="pacman -Q")
-def querySpecific():
-    res = subprocess.run(args="pacman -Qi" + pkg.get(),capture_output=True, text=True)
-    Res = tk.Label(text=res)
-    Res.pack()
+    if pkg.get():
+        subprocess.run(["sudo", "pacman", "-S", pkg.get()])
 
+def uninstall():
+    if pkg.get():
+        subprocess.run(["sudo", "pacman", "-Rs", pkg.get()])
+
+def query():
+    subprocess.run(["pacman", "-Q"])
+
+def querySpecific():
+    if pkg.get():
+        res = subprocess.run(["pacman", "-Qi", pkg.get()], capture_output=True, text=True)
+        result_label.config(text=res.stdout)
+    else:
+        result_label.config(text="Please enter a package name first")
+
+def update_selected(*args):
+    if pkg.get():
+        selected.config(text=f"Selected: {pkg.get()}")
+    else:
+        selected.config(text="No package selected")
+
+# Main frame with padding
+main_frame = tk.Frame(root, background=Background, padx=20, pady=20)
+main_frame.pack(expand=True, fill="both")
+
+# Title label
+label1 = tk.Label(main_frame, text="PacGUI", font=("Arial", 16, "bold"), 
+                  background=Background, foreground=Text_Color)
+label1.pack(pady=(0, 5))
+
+# Subtitle label
+label2 = tk.Label(main_frame, text="Graphical interface for pacman", font=("Arial", 10),
+                  background=Background, foreground=Text_Color)
+label2.pack(pady=(0, 15))
+
+# Instruction label
+instruction = tk.Label(main_frame, text="Enter package name below:", font=("Arial", 9),
+                       background=Background, foreground=Text_Color)
+instruction.pack(pady=(0, 5))
+
+# Text entry
+text_box = tk.Entry(main_frame, textvariable=pkg, font=("Arial", 11), width=30)
+text_box.pack(pady=(0, 10))
+
+# Selected package label
+selected = tk.Label(main_frame, text="No package selected", font=("Arial", 9, "italic"),
+                    background=Background, foreground=Text_Color)
+selected.pack(pady=(0, 15))
+
+# Button frame
+button_frame = tk.Frame(main_frame, background=Background)
+button_frame.pack(pady=10)
+
+# Install button
+Install = tk.Button(button_frame, height=2, width=12, text="Install", 
+                    command=install, bg=Button_Color, fg="white", 
+                    font=("Arial", 10, "bold"), relief="raised")
+Install.pack(pady=5)
+
+# Uninstall button
+Uninstall = tk.Button(button_frame, height=2, width=12, text="Uninstall", 
+                      command=uninstall, bg=Button_Color, fg="white",
+                      font=("Arial", 10, "bold"), relief="raised")
+Uninstall.pack(pady=5)
+
+# Query button
+Query = tk.Button(button_frame, height=2, width=12, text="List Packages", 
+                  command=query, bg=Button_Color, fg="white",
+                  font=("Arial", 10, "bold"), relief="raised")
+Query.pack(pady=5)
+
+# Query specific button
+QuerySpecific = tk.Button(button_frame, height=2, width=20, text="Package Info", 
+                          command=querySpecific, bg=Button_Color, fg="white",
+                          font=("Arial", 10, "bold"), relief="raised")
+QuerySpecific.pack(pady=5)
+
+# Result label for querySpecific
+result_label = tk.Label(main_frame, text="", font=("Arial", 9), 
+                        background=Background, foreground=Text_Color, 
+                        wraplength=350, justify="left")
+result_label.pack(pady=(15, 0))
+
+# Update selected label when text changes
+pkg.trace_add("write", update_selected)
 
 root.mainloop()
