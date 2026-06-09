@@ -15,6 +15,8 @@ To install from the tar.gz follow these instructions:
 2. run tar -xf PacUI.tar.gz in the directory it's downloaded in, or move to ~/ then run there.
 3. Open the script with PacUI.py
 
+For the GUI version, download/copy PacGUI.py instead.
+
 ## Features
 In its current, work in progress, state, PacUI is just a guided CLI for pacman. It does not have every command in pacman accessible, nor is planned to.
 Currently, PacUI is able to:
