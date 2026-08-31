@@ -24,7 +24,7 @@ PacUI requires that python is installed. PacUI was made with python 3.14, it is 
 PacUI uses the "pacman" package manager as a base, and APTUI uses apt, the respective manager is required for PacUI/APTUI to function.
 
 ## Notes
-The .py files (PacUI.py and APTUI.py) are terminal based, additional files will be added for a button based UI.
+The .py files (PacUI.py and APTUI.py) are terminal based, additional files will potentially be added for a button based UI later.
 
 ## How it works
 PacUI is a simple script, it gives a prompt, you press a letter then enter, then it will run a command for you. 
