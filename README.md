@@ -10,13 +10,6 @@ To install and use PacUI from the py, there are 3 steps.
 2. Build the file, run the command "chmod +x /home/<user name>/Downloads/PacUI.py"(or the location the file is currently in)
 3. Run the program, by typing, in the terminal "./PacUI.py" or "./APTUI.py"
 
-To install from the tar.gz follow these instructions:
-1. Download the tar.gz file from the main branch
-2. run tar -xf PacUI.tar.gz in the directory it's downloaded in, or move to ~/ then run there.
-3. Open the script with PacUI.py
-
-For the GUI version, download/copy PacGUI.py instead.
-
 ## Features
 In its current, work in progress, state, PacUI is just a guided CLI for pacman. It does not have every command in pacman accessible, nor is planned to.
 Currently, PacUI is able to:
